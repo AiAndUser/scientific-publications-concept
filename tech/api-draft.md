@@ -138,16 +138,17 @@
 ### POST `/api/v1/auth/login`
 
 **Запрос:**
-```json
 
+```json
 {
   "email": "user@example.com",
   "password": "••••••••"
 }
+```
 
 **Ответ:**
-```json
 
+```json
 {
   "access_token": "eyJhbGciOi...",
   "refresh_token": "eyJhbGciOi...",
@@ -157,38 +158,50 @@
     "role": "author"
   }
 }
+```
 
-POST /api/v1/articles/:id/expert-like
+---
+
+### POST `/api/v1/articles/:id/expert-like`
+
 **Ответ (успех):**
-```json
 
+```json
 {
   "status": "ok",
   "amount": 100,
-  "author_id": 42,
   "card_balance": 4900,
   "message": "Лайк учтён. Автор получит 100 ₽."
 }
+```
 
 **Ответ (ошибка — геофильтр):**
 
+```json
 {
   "status": "error",
   "code": 403,
   "message": "Нельзя лайкать авторов из своего региона."
 }
+```
 
 **Ответ (ошибка — баланс карты):**
 
+```json
 {
   "status": "error",
   "code": 402,
   "message": "Недостаточно средств на экспертной карте."
 }
+```
 
-GET /api/v1/payouts/balance
+---
+
+### GET `/api/v1/payouts/balance`
+
 **Ответ:**
 
+```json
 {
   "gross": 2700,
   "tax": 162,
@@ -196,6 +209,7 @@ GET /api/v1/payouts/balance
   "status": "available",
   "min_payout": 500
 }
+```
 
 **Коды ошибок**
 Код	Значение
@@ -209,26 +223,19 @@ GET /api/v1/payouts/balance
 409	Конфликт (двойной лайк)
 429	Слишком много запросов
 500	Ошибка сервера
+
 Что важно помнить
 1 эксперт = 1 лайк на статью.
-
 Геофильтр и аффилиация — обязательны.
-
 Налог 6% — автоматически.
-
 Порог вывода — обсуждается.
-
 Безопасность — прежде всего.
 
 Чего здесь нет
 ❌ Финальной спецификации.
-
 ❌ OpenAPI / Swagger (пока).
-
 ❌ Гарантий, что endpoints не изменятся.
-
 ❌ Обязательств реализовать именно так.
-
 Только черновик. Можно делать иначе. 🙂
 
 ---
